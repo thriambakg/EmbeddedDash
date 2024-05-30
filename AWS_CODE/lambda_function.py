@@ -2,7 +2,7 @@ import json, boto3, os
 
 def lambda_handler(event, context):
     try:
-        def getQuickSightDashboardUrl(awsAccountId, dashboardId):
+        def getQuickSightDashboardEmbedUrl(awsAccountId, dashboardId):
             # Create QuickSight client
             quickSight = boto3.client('quicksight')
             
@@ -21,11 +21,9 @@ def lambda_handler(event, context):
         # Read in the environment variable for DashboardId
         dashboardId = os.environ['DashboardId']
 
-        # Initialize response dictionary
-        response = {}
 
         # Get the QuickSight dashboard embed URL
-        response = getQuickSightDashboardUrl(awsAccountId, dashboardId)
+        response = getQuickSightDashboardEmbedUrl(awsAccountId, dashboardId)
 
         # Return successful response with the embed URL
         return {

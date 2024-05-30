@@ -210,11 +210,10 @@ dashboardId = os.environ['DashboardId']
 6. Initialize and get the response:
 
 ```
-response = {}
 response = getQuickSightDashboardUrl(awsAccountId, dashboardId)
 ```
 
-- Initializes an empty response dictionary and calls the function to get the embed URL.
+- Initializes and calls the function to get the embed URL.
 
 
 7. Returning the successful response:
