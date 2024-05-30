@@ -82,5 +82,159 @@ import { useEffect, useState } from 'react';
 - ./App.css for styling.
 - React and its hooks useEffect and useState for managing component state and lifecycle.
 
+2. Defining the App component:
 
+```
+function App() {
+  const [dashboardUrl, setDashboardUrl] = useState(null);
+  const [jsonResponse, setJSONResponse] = useState(null);
+```
+
+- Declaring state variables dashboardUrl and jsonResponse to store the QuickSight embed URL and the full JSON response, respectively. 
+
+3. Fetching data on component mount:
+
+```
+useEffect(() => {
+  const timeout = setTimeout(() => {
+    fetch([YOUR_API_ENDPOINT]
+    ).then((response) => response.json()
+    ).then((response) => {
+      setDashboardUrl(response.EmbedUrl)
+      setJSONResponse(response)
+    })
+  }, 10);
+  return () => clearTimeout(timeout);
+}, []);
+```
+
+- Using useEffect to fetch data from the API when the component mounts.
+- `setTimeout` with a delay of 10 milliseconds to simulate a slight delay before making the fetch request.
+- `fetch` to get data from the provided API endpoint and parsing it to JSON.
+- Setting the state variables dashboardUrl and jsonResponse with the fetched data.
+- Cleaning up the timeout when the component unmounts.
+
+4. Rendering the component:
+
+```
+return (
+  <>
+    <header>
+      <h1>Embedded <i>QuickSight</i>: Sample_Dashboard</h1>
+    </header>
+    <main>
+      <iframe
+        width="960"
+        height="720"
+        src={dashboardUrl}>
+      </iframe>
+    </main>
+  </>
+);
+```
+
+- Returning the JSX to render the component.
+- Displaying a header with the title.
+- Embedding the QuickSight dashboard using an iframe with the src set to dashboardUrl.
+
+5. Exporting the App component:
+
+```
+export default App;
+```
+
+- Exporting the App component as the default export.
+
+## Lambda Code Explanation
+
+1. Importing necessary modules:
+
+```
+import json, boto3, os
+```
+- `json` for handling JSON data.
+- `boto3` for AWS SDK to interact with AWS services.
+- `os` for accessing environment variables.
+
+2. Lambda handler function:
+
+```
+def lambda_handler(event, context):
+```
+
+- The entry point for AWS Lambda function execution.
+
+3. Get QuickSight dashboard URL:
+
+```
+def getQuickSightDashboardUrl(awsAccountId, dashboardId):
+    # Create QuickSight client
+    quickSight = boto3.client('quicksight')
+    
+    # Generate Anonymous Embed URL
+    response = quickSight.get_dashboard_embed_url(
+        AwsAccountId=awsAccountId,
+        DashboardId=dashboardId,
+        IdentityType='ANONYMOUS',
+        Namespace='default'
+    )
+    return response
+```
+
+- Defines a function to generate an anonymous embed URL for the QuickSight dashboard.
+
+4. Extracting AWS Account Id:
+
+```
+awsAccountId = context.invoked_function_arn.split(':')[4]
+```
+- Extracts AWS Account ID from the Lambda function's ARN.
+
+5. Reading environment variable:
+
+```
+dashboardId = os.environ['DashboardId']
+```
+
+- Reads the DashboardId environment variable.
+
+6. Initialize and get the response:
+
+```
+response = {}
+response = getQuickSightDashboardUrl(awsAccountId, dashboardId)
+```
+
+- Initializes an empty response dictionary and calls the function to get the embed URL.
+
+7. Returning the successful response:
+
+```
+return {
+    'statusCode': 200,
+    'headers': {
+        "Access-Control-Allow-Origin": "[YOUR_DOMAIN]",
+        "Content-Type": "text/plain"
+    },
+    'body': json.dumps(response)
+}
+```
+
+- Returns the embed URL in the response body with HTTP status 200.
+
+8. Exception handling:
+
+```
+except Exception as e:
+    return {
+        'statusCode': 400,
+        'headers': {
+            "Access-Control-Allow-Origin": "[YOUR_DOMAIN]",
+            "Content-Type": "text/plain"
+        },
+        'body': json.dumps('Error: ' + str(e))
+    }
+```
+
+- Catches any exceptions and returns an error response with HTTP status 400.
 

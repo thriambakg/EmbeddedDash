@@ -1,4 +1,4 @@
-import json, boto3, os, re, base64
+import json, boto3, os
 
 def lambda_handler(event, context):
     try:
