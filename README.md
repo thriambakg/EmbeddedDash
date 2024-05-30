@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## App.js Code Explanation
+
+1. Importing necessary modules and CSS:
+
+`import './App.css';`
+`import * as React from 'react';`
+`import { useEffect, useState } from 'react';`
+
+- ./App.css for styling.
+- React and its hooks useEffect and useState for managing component state and lifecycle.
