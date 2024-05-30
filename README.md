@@ -82,6 +82,7 @@ import { useEffect, useState } from 'react';
 - ./App.css for styling.
 - React and its hooks useEffect and useState for managing component state and lifecycle.
 
+
 2. Defining the App component:
 
 ```
@@ -91,6 +92,7 @@ function App() {
 ```
 
 - Declaring state variables dashboardUrl and jsonResponse to store the QuickSight embed URL and the full JSON response, respectively. 
+
 
 3. Fetching data on component mount:
 
@@ -113,6 +115,7 @@ useEffect(() => {
 - `fetch` to get data from the provided API endpoint and parsing it to JSON.
 - Setting the state variables dashboardUrl and jsonResponse with the fetched data.
 - Cleaning up the timeout when the component unmounts.
+
 
 4. Rendering the component:
 
@@ -137,6 +140,7 @@ return (
 - Displaying a header with the title.
 - Embedding the QuickSight dashboard using an iframe with the src set to dashboardUrl.
 
+
 5. Exporting the App component:
 
 ```
@@ -156,6 +160,7 @@ import json, boto3, os
 - `boto3` for AWS SDK to interact with AWS services.
 - `os` for accessing environment variables.
 
+
 2. Lambda handler function:
 
 ```
@@ -163,6 +168,7 @@ def lambda_handler(event, context):
 ```
 
 - The entry point for AWS Lambda function execution.
+
 
 3. Get QuickSight dashboard URL:
 
@@ -183,12 +189,14 @@ def getQuickSightDashboardUrl(awsAccountId, dashboardId):
 
 - Defines a function to generate an anonymous embed URL for the QuickSight dashboard.
 
+
 4. Extracting AWS Account Id:
 
 ```
 awsAccountId = context.invoked_function_arn.split(':')[4]
 ```
 - Extracts AWS Account ID from the Lambda function's ARN.
+
 
 5. Reading environment variable:
 
@@ -198,6 +206,7 @@ dashboardId = os.environ['DashboardId']
 
 - Reads the DashboardId environment variable.
 
+
 6. Initialize and get the response:
 
 ```
@@ -206,6 +215,7 @@ response = getQuickSightDashboardUrl(awsAccountId, dashboardId)
 ```
 
 - Initializes an empty response dictionary and calls the function to get the embed URL.
+
 
 7. Returning the successful response:
 
@@ -221,6 +231,7 @@ return {
 ```
 
 - Returns the embed URL in the response body with HTTP status 200.
+
 
 8. Exception handling:
 
