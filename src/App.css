@@ -1,12 +1,13 @@
 body {
-  background-color: #ffffff;
+  background-color: #000000;
   font-family: Arial, sans-serif;
+  color: #FFFFFF;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #f1f1f1;
+  background-color: #c78c1f;
   padding: 20px;
   text-align: center;
 }
@@ -18,22 +19,4 @@ h1 {
 main {
   margin: 20px;
   text-align: center;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-a {
-  color: #000000;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-i {
-  color: orange;
-  font-style: normal;
 }

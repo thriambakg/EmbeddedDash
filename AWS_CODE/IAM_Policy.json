@@ -1,0 +1,16 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+     {
+      "Sid": "Statement1",
+      "Effect": "Allow",
+      "Action": [
+       "quicksight:GetAnonymousUserEmbedUrl",
+       "quicksight:GetDashboardEmbedUrl"
+      ],
+      "Resource": [
+       "arn:aws:quicksight:[YOUR_REGION]:[YOUR_ACCOUNT_ID]:dashboard/[DASHBOARD_ID]"
+      ]
+     }
+    ]
+   }
