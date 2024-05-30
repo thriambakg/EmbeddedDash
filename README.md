@@ -69,6 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+<<<<<<< HEAD
 ## App.js Code Explanation
 
 1. Importing necessary modules and CSS:
@@ -79,3 +80,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 - ./App.css for styling.
 - React and its hooks useEffect and useState for managing component state and lifecycle.
+=======
+
+>>>>>>> fa416915cc0cf6c93d222d7316d7921dce30715f
